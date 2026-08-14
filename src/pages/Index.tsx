@@ -1,15 +1,31 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import Problem from '@/components/Problem';
+import Process from '@/components/Process';
+import Criteria from '@/components/Criteria';
+import Categories from '@/components/Categories';
+import Expertise from '@/components/Expertise';
+import Pricing from '@/components/Pricing';
+import Faq from '@/components/Faq';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
-      <span className="absolute bottom-8 left-1/2 -translate-x-1/2 inline-block bg-[#FF6637] text-white text-sm px-4 py-2 rounded-full whitespace-nowrap">
-        Подождите 5 минут, Юра создает первую версию проекта с нуля
-      </span>
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main>
+        <Hero />
+        <Problem />
+        <Process />
+        <Criteria />
+        <Categories />
+        <Expertise />
+        <Pricing />
+        <Faq />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 };

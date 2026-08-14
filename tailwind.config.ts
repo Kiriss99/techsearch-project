@@ -18,7 +18,16 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				heading: ['Onest', 'system-ui', 'sans-serif'],
+				sans: ['"IBM Plex Sans"', 'system-ui', 'sans-serif'],
+			},
 			colors: {
+				hero: {
+					rule: 'hsl(var(--hero-rule))',
+					strike: 'hsl(var(--hero-strike))',
+					surface: 'hsl(var(--hero-surface))',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -69,6 +78,22 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			keyframes: {
+				rise: {
+					from: { transform: 'translateY(105%)' },
+					to: { transform: 'translateY(0)' }
+				},
+				'fade-in': {
+					from: { opacity: '0', transform: 'translateY(14px)' },
+					to: { opacity: '1', transform: 'none' }
+				},
+				'scale-in': {
+					from: { opacity: '0', transform: 'scale(0.96)' },
+					to: { opacity: '1', transform: 'scale(1)' }
+				},
+				roll: {
+					from: { transform: 'translateY(0)' },
+					to: { transform: 'translateY(-50%)' }
+				},
 				'accordion-down': {
 					from: {
 						height: '0'
@@ -87,6 +112,10 @@ export default {
 				}
 			},
 			animation: {
+				rise: 'rise 0.95s cubic-bezier(.16,.84,.3,1) forwards',
+				'fade-in': 'fade-in 0.8s ease forwards',
+				'scale-in': 'scale-in 0.3s ease-out forwards',
+				roll: 'roll 34s linear infinite',
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
 			}
