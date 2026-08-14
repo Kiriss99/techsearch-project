@@ -31,7 +31,7 @@ const Footer = () => (
 
         <div className="flex flex-col gap-3 text-[14px] text-muted-foreground">
           <a
-            href="https://t.me/techsearch"
+            href="https://t.me/techsearchteam"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 transition-colors hover:text-foreground"

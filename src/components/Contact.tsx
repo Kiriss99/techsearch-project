@@ -58,7 +58,7 @@ const Contact = () => {
 
             <div className="mt-10 grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2">
               <a
-                href="https://t.me/techsearch"
+                href="https://t.me/techsearchteam"
                 target="_blank"
                 rel="noreferrer"
                 className="group flex items-center gap-4 bg-card px-6 py-6 transition-colors hover:bg-secondary"

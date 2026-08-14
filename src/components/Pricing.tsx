@@ -8,6 +8,7 @@ type Plan = {
   items: string[];
   featured?: boolean;
   cta: string;
+  href?: string;
 };
 
 const PLANS: Plan[] = [
@@ -49,6 +50,7 @@ const PLANS: Plan[] = [
       'Сопровождаем до оформления заказов',
     ],
     cta: 'Написать в Telegram',
+    href: 'https://t.me/techsearchteam',
   },
 ];
 
@@ -91,7 +93,9 @@ const Pricing = () => (
             </ul>
 
             <a
-              href="#contact"
+              href={plan.href ?? '#contact'}
+              target={plan.href ? '_blank' : undefined}
+              rel={plan.href ? 'noreferrer' : undefined}
               className={`mt-8 inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3.5 font-heading text-[14px] font-medium transition-all duration-300 hover:-translate-y-0.5 ${
                 plan.featured
                   ? 'bg-primary text-primary-foreground hover:shadow-[0_10px_22px_hsl(var(--primary)/0.32)]'
