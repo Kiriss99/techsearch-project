@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 
 const NAV = [
-  { href: '#problem', label: 'Зачем это' },
   { href: '#how', label: 'Как работаем' },
-  { href: '#what', label: 'Что учитываем' },
   { href: '#categories', label: 'Категории' },
   { href: '#quiz', label: 'Калькулятор' },
   { href: '#price', label: 'Тарифы' },
+  { href: '#reviews', label: 'Отзывы' },
+  { href: '/about', label: 'О нас' },
   { href: '#faq', label: 'Вопросы' },
 ];
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+  const onHome = pathname === '/';
+  const link = (href: string) => (href.startsWith('#') && !onHome ? `/${href}` : href);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -37,7 +41,7 @@ const Header = () => {
     >
       <div className="mx-auto flex h-[68px] max-w-[1440px] items-center justify-between px-5 md:px-10 lg:px-16">
         <a
-          href="#top"
+          href="/"
           className="flex items-center gap-2.5 font-heading text-[17px] font-bold tracking-[-0.03em] text-foreground"
         >
           <img src="/logo.svg" alt="" className="h-6 w-auto" />
@@ -50,7 +54,7 @@ const Header = () => {
           {NAV.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={link(item.href)}
               className="border-b border-transparent pb-0.5 text-[13px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
             >
               {item.label}
@@ -60,7 +64,7 @@ const Header = () => {
 
         <div className="flex items-center gap-3">
           <a
-            href="#contact"
+            href={link('#contact')}
             className="hidden rounded-sm bg-primary px-5 py-2.5 font-heading text-[13px] font-medium text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
           >
             Получить подбор
@@ -82,7 +86,7 @@ const Header = () => {
             {NAV.map((item) => (
               <a
                 key={item.href}
-                href={item.href}
+                href={link(item.href)}
                 onClick={() => setOpen(false)}
                 className="border-b border-border/60 py-3.5 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
               >
@@ -90,7 +94,7 @@ const Header = () => {
               </a>
             ))}
             <a
-              href="#contact"
+              href={link('#contact')}
               onClick={() => setOpen(false)}
               className="mt-4 inline-flex items-center justify-center rounded-sm bg-primary px-5 py-3 font-heading text-sm font-medium text-primary-foreground"
             >

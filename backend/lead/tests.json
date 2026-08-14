@@ -1,0 +1,38 @@
+{
+  "tests": [
+    {
+      "name": "CORS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Отправка заявки",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Иван",
+        "contact": "@ivan",
+        "task": "Нужен телевизор в гостиную 18 м2 под PS5",
+        "budget": "30–70 000 ₽",
+        "source": "Форма на сайте"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Пустая заявка отклоняется",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "",
+        "contact": "",
+        "task": ""
+      },
+      "expectedStatus": 400
+    }
+  ]
+}

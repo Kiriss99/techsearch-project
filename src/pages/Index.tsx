@@ -7,6 +7,8 @@ import Categories from '@/components/Categories';
 import Expertise from '@/components/Expertise';
 import Quiz from '@/components/Quiz';
 import Pricing from '@/components/Pricing';
+import Terms from '@/components/Terms';
+import Reviews from '@/components/Reviews';
 import Faq from '@/components/Faq';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -24,6 +26,8 @@ const Index = () => {
         <Expertise />
         <Quiz />
         <Pricing />
+        <Terms />
+        <Reviews />
         <Faq />
         <Contact />
       </main>

@@ -105,7 +105,17 @@ const Quiz = () => {
     )}. Этап: ${labelOf(2, answers.stage)}. Важнее всего: ${labelOf(3, answers.priority)}.`;
     window.dispatchEvent(
       new CustomEvent('techsearch:prefill', {
-        detail: { task: text, budget: labelOf(1, answers.budget) },
+        detail: {
+          task: text,
+          budget: labelOf(1, answers.budget),
+          quiz: {
+            'Категория': labelOf(0, answers.category),
+            'Бюджет': labelOf(1, answers.budget),
+            'Этап': labelOf(2, answers.stage),
+            'Приоритет': labelOf(3, answers.priority),
+            'Рекомендованный тариф': `${plan.name} — ${plan.price}`,
+          },
+        },
       }),
     );
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });

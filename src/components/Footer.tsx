@@ -18,20 +18,35 @@ const Footer = () => (
         </div>
 
         <nav className="flex flex-col gap-3 text-[14px] text-muted-foreground">
-          <a href="#how" className="transition-colors hover:text-foreground">
+          <a href="/#how" className="transition-colors hover:text-foreground">
             Как работаем
           </a>
-          <a href="#categories" className="transition-colors hover:text-foreground">
+          <a href="/#categories" className="transition-colors hover:text-foreground">
             Категории и сценарии
           </a>
-          <a href="#price" className="transition-colors hover:text-foreground">
+          <a href="/#price" className="transition-colors hover:text-foreground">
             Тарифы
           </a>
-          <a href="#quiz" className="transition-colors hover:text-foreground">
+          <a href="/#quiz" className="transition-colors hover:text-foreground">
             Калькулятор подбора
           </a>
-          <a href="#faq" className="transition-colors hover:text-foreground">
+          <a href="/#reviews" className="transition-colors hover:text-foreground">
+            Отзывы клиентов
+          </a>
+          <a href="/#faq" className="transition-colors hover:text-foreground">
             Вопросы
+          </a>
+        </nav>
+
+        <nav className="flex flex-col gap-3 text-[14px] text-muted-foreground">
+          <a href="/about" className="transition-colors hover:text-foreground">
+            О нас
+          </a>
+          <a href="/about#cases" className="transition-colors hover:text-foreground">
+            Примеры подборов
+          </a>
+          <a href="/#terms" className="transition-colors hover:text-foreground">
+            Условия работы
           </a>
           <a
             href="https://t.me/techssearch"
@@ -39,7 +54,7 @@ const Footer = () => (
             rel="noreferrer"
             className="transition-colors hover:text-foreground"
           >
-            Отзывы и разборы
+            Канал с разборами
           </a>
         </nav>
 

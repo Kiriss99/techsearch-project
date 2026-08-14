@@ -39,6 +39,18 @@ const Expertise = () => (
               </li>
             ))}
           </ul>
+
+          <a
+            href="/about"
+            className="group mt-8 inline-flex items-center gap-2 text-[15px] font-medium text-primary underline-offset-4 hover:underline"
+          >
+            Подробнее о нас и примеры подборов
+            <Icon
+              name="ArrowRight"
+              size={15}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </a>
         </div>
       </div>
     </div>

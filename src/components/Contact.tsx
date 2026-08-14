@@ -4,6 +4,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 
+import { sendLead } from '@/lib/api';
+
 type Errors = Partial<Record<'name' | 'contact' | 'task', string>>;
 
 const BUDGETS = ['до 30 000 ₽', '30–70 000 ₽', '70–150 000 ₽', 'больше 150 000 ₽'];
@@ -14,15 +16,22 @@ const Contact = () => {
   const [budget, setBudget] = useState(BUDGETS[1]);
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [quiz, setQuiz] = useState<Record<string, string> | undefined>(undefined);
 
   useEffect(() => {
     const onPrefill = (e: Event) => {
-      const detail = (e as CustomEvent<{ task?: string; budget?: string }>).detail;
+      const detail = (e as CustomEvent<{
+        task?: string;
+        budget?: string;
+        quiz?: Record<string, string>;
+      }>).detail;
       if (detail?.task) {
         setSent(false);
         setValues((v) => ({ ...v, task: detail.task as string }));
         setErrors((err) => ({ ...err, task: undefined }));
       }
+      if (detail?.quiz) setQuiz(detail.quiz);
       if (detail?.budget && BUDGETS.includes(detail.budget)) setBudget(detail.budget);
     };
     window.addEventListener('techsearch:prefill', onPrefill);
@@ -45,14 +54,33 @@ const Contact = () => {
     return Object.keys(next).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
-    setSent(true);
-    toast({
-      title: 'Заявка принята',
-      description: 'Ответим в течение рабочего дня и уточним детали задачи.',
-    });
+    if (!validate() || loading) return;
+    setLoading(true);
+    try {
+      await sendLead({
+        name: values.name.trim(),
+        contact: values.contact.trim(),
+        task: values.task.trim(),
+        budget,
+        source: quiz ? 'Калькулятор подбора' : 'Форма на сайте',
+        quiz,
+      });
+      setSent(true);
+      toast({
+        title: 'Заявка принята',
+        description: 'Ответим в течение рабочего дня и уточним детали задачи.',
+      });
+    } catch {
+      toast({
+        title: 'Не удалось отправить',
+        description: 'Попробуйте ещё раз или напишите нам в Telegram — @techsearchteam.',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -220,13 +248,18 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="group inline-flex w-full items-center justify-center gap-3 rounded-sm bg-primary px-6 py-4 font-heading text-[15px] font-medium text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_22px_hsl(var(--primary)/0.32)]"
+                  disabled={loading}
+                  className="group inline-flex w-full items-center justify-center gap-3 rounded-sm bg-primary px-6 py-4 font-heading text-[15px] font-medium text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_22px_hsl(var(--primary)/0.32)] disabled:pointer-events-none disabled:opacity-60"
                 >
-                  Получить подбор
+                  {loading ? 'Отправляем…' : 'Получить подбор'}
                   <Icon
-                    name="ArrowRight"
+                    name={loading ? 'LoaderCircle' : 'ArrowRight'}
                     size={16}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
+                    className={
+                      loading
+                        ? 'animate-spin'
+                        : 'transition-transform duration-300 group-hover:translate-x-1'
+                    }
                   />
                 </button>
 
