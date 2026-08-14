@@ -5,6 +5,7 @@ import Process from '@/components/Process';
 import Criteria from '@/components/Criteria';
 import Categories from '@/components/Categories';
 import Expertise from '@/components/Expertise';
+import Quiz from '@/components/Quiz';
 import Pricing from '@/components/Pricing';
 import Faq from '@/components/Faq';
 import Contact from '@/components/Contact';
@@ -21,6 +22,7 @@ const Index = () => {
         <Criteria />
         <Categories />
         <Expertise />
+        <Quiz />
         <Pricing />
         <Faq />
         <Contact />

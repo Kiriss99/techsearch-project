@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Icon from '@/components/ui/icon';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -14,6 +14,20 @@ const Contact = () => {
   const [budget, setBudget] = useState(BUDGETS[1]);
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+
+  useEffect(() => {
+    const onPrefill = (e: Event) => {
+      const detail = (e as CustomEvent<{ task?: string; budget?: string }>).detail;
+      if (detail?.task) {
+        setSent(false);
+        setValues((v) => ({ ...v, task: detail.task as string }));
+        setErrors((err) => ({ ...err, task: undefined }));
+      }
+      if (detail?.budget && BUDGETS.includes(detail.budget)) setBudget(detail.budget);
+    };
+    window.addEventListener('techsearch:prefill', onPrefill);
+    return () => window.removeEventListener('techsearch:prefill', onPrefill);
+  }, []);
 
   const update = (field: keyof typeof values, value: string) => {
     setValues((v) => ({ ...v, [field]: value }));
@@ -68,17 +82,17 @@ const Contact = () => {
                   <span className="block font-heading text-[15px] font-semibold">
                     Написать в Telegram
                   </span>
-                  <span className="block text-[13px] text-muted-foreground">@techsearch</span>
+                  <span className="block text-[13px] text-muted-foreground">@techsearchteam</span>
                 </span>
               </a>
               <a
-                href="mailto:hello@techsearch.ru"
+                href="mailto:techsearchteam@gmail.com"
                 className="group flex items-center gap-4 bg-card px-6 py-6 transition-colors hover:bg-secondary"
               >
                 <Icon name="Mail" size={20} className="text-primary" />
                 <span>
                   <span className="block font-heading text-[15px] font-semibold">Почта</span>
-                  <span className="block text-[13px] text-muted-foreground">hello@techsearch.ru</span>
+                  <span className="block text-[13px] text-muted-foreground">techsearchteam@gmail.com</span>
                 </span>
               </a>
             </div>
@@ -87,6 +101,15 @@ const Contact = () => {
               <Icon name="Clock" size={14} className="text-primary" />
               Отвечаем по будням с 10:00 до 20:00
             </p>
+            <a
+              href="https://t.me/techssearch"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 inline-flex items-center gap-2 text-[13px] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <Icon name="MessageSquare" size={14} className="text-primary" />
+              Отзывы клиентов и разборы — в канале @techssearch
+            </a>
           </div>
 
           <div className="rounded-sm border border-border bg-card p-6 lg:p-9">

@@ -6,6 +6,7 @@ const NAV = [
   { href: '#how', label: 'Как работаем' },
   { href: '#what', label: 'Что учитываем' },
   { href: '#categories', label: 'Категории' },
+  { href: '#quiz', label: 'Калькулятор' },
   { href: '#price', label: 'Тарифы' },
   { href: '#faq', label: 'Вопросы' },
 ];
@@ -37,9 +38,12 @@ const Header = () => {
       <div className="mx-auto flex h-[68px] max-w-[1440px] items-center justify-between px-5 md:px-10 lg:px-16">
         <a
           href="#top"
-          className="font-heading text-[17px] font-bold tracking-[-0.03em] text-foreground"
+          className="flex items-center gap-2.5 font-heading text-[17px] font-bold tracking-[-0.03em] text-foreground"
         >
-          Tech<span className="text-primary">Search</span>
+          <img src="/logo.svg" alt="" className="h-6 w-auto" />
+          <span>
+            Tech<span className="text-primary">Search</span>
+          </span>
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex">

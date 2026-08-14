@@ -5,8 +5,11 @@ const Footer = () => (
     <div className="mx-auto max-w-[1440px] px-5 md:px-10 lg:px-16">
       <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
         <div className="max-w-sm">
-          <p className="font-heading text-[17px] font-bold tracking-[-0.03em]">
-            Tech<span className="text-primary">Search</span>
+          <p className="flex items-center gap-2.5 font-heading text-[17px] font-bold tracking-[-0.03em]">
+            <img src="/logo.svg" alt="" className="h-6 w-auto" />
+            <span>
+              Tech<span className="text-primary">Search</span>
+            </span>
           </p>
           <p className="mt-3 text-[14px] leading-[1.6] text-muted-foreground">
             Независимый подбор техники для дома, офиса и аренды. Без процента с продаж и привязки к
@@ -24,8 +27,19 @@ const Footer = () => (
           <a href="#price" className="transition-colors hover:text-foreground">
             Тарифы
           </a>
+          <a href="#quiz" className="transition-colors hover:text-foreground">
+            Калькулятор подбора
+          </a>
           <a href="#faq" className="transition-colors hover:text-foreground">
             Вопросы
+          </a>
+          <a
+            href="https://t.me/techssearch"
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors hover:text-foreground"
+          >
+            Отзывы и разборы
           </a>
         </nav>
 
@@ -40,11 +54,11 @@ const Footer = () => (
             Написать в Telegram
           </a>
           <a
-            href="mailto:hello@techsearch.ru"
+            href="mailto:techsearchteam@gmail.com"
             className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
           >
             <Icon name="Mail" size={15} className="text-primary" />
-            hello@techsearch.ru
+            techsearchteam@gmail.com
           </a>
         </div>
       </div>
