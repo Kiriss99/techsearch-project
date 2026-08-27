@@ -45,6 +45,9 @@ const Footer = () => (
           <a href="/about#cases" className="transition-colors hover:text-foreground">
             Примеры подборов
           </a>
+          <a href="/blog" className="transition-colors hover:text-foreground">
+            Блог
+          </a>
           <a href="/#terms" className="transition-colors hover:text-foreground">
             Условия работы
           </a>

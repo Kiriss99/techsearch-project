@@ -10,6 +10,7 @@ const NAV = [
   { href: '#price', label: 'Тарифы' },
   { href: '#reviews', label: 'Отзывы' },
   { href: '/about', label: 'О нас' },
+  { href: '/blog', label: 'Блог' },
   { href: '#faq', label: 'Вопросы' },
 ];
 

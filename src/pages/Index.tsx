@@ -12,6 +12,7 @@ import Pricing from '@/components/Pricing';
 import Terms from '@/components/Terms';
 import Reviews from '@/components/Reviews';
 import Faq from '@/components/Faq';
+import BlogPreview from '@/components/BlogPreview';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -37,6 +38,7 @@ const Index = () => {
         <Terms />
         <Reviews />
         <Faq />
+        <BlogPreview />
         <Contact />
       </main>
       <Footer />
