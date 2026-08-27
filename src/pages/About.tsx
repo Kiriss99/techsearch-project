@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Seo from '@/components/Seo';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Cases from '@/components/Cases';
@@ -73,6 +74,11 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="О нас — TechSearch"
+        description="8 лет опыта в рознице техники, 400+ подборов и независимость от магазинов. Как мы работаем, принимаем решения и что показываем на примерах реальных подборов."
+        path="/about"
+      />
       <Header />
       <main>
         <section id="top" className="relative overflow-hidden pb-16 pt-32 lg:pb-24 lg:pt-44">

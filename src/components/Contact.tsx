@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -12,6 +13,7 @@ const BUDGETS = ['до 30 000 ₽', '30–70 000 ₽', '70–150 000 ₽', 'бо
 
 const Contact = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [values, setValues] = useState({ name: '', contact: '', task: '' });
   const [budget, setBudget] = useState(BUDGETS[1]);
   const [errors, setErrors] = useState<Errors>({});
@@ -68,10 +70,7 @@ const Contact = () => {
         quiz,
       });
       setSent(true);
-      toast({
-        title: 'Заявка принята',
-        description: 'Ответим в течение рабочего дня и уточним детали задачи.',
-      });
+      navigate('/thank-you');
     } catch {
       toast({
         title: 'Не удалось отправить',

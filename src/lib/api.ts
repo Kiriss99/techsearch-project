@@ -7,6 +7,7 @@ export type LeadPayload = {
   budget?: string;
   source?: string;
   quiz?: Record<string, string>;
+  callback_time?: string;
 };
 
 export const sendLead = async (payload: LeadPayload) => {

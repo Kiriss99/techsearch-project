@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
+import CallbackDialog from '@/components/CallbackDialog';
 
 const NAV = [
   { href: '#how', label: 'Как работаем' },
@@ -15,6 +16,7 @@ const NAV = [
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [callbackOpen, setCallbackOpen] = useState(false);
   const { pathname } = useLocation();
   const onHome = pathname === '/';
   const link = (href: string) => (href.startsWith('#') && !onHome ? `/${href}` : href);
@@ -63,6 +65,14 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setCallbackOpen(true)}
+            className="hidden items-center gap-2 rounded-sm border border-border px-4 py-2.5 font-heading text-[13px] font-medium text-foreground transition-colors hover:border-primary sm:inline-flex"
+          >
+            <Icon name="PhoneCall" size={14} className="text-primary" />
+            Обратный звонок
+          </button>
           <a
             href={link('#contact')}
             className="hidden rounded-sm bg-primary px-5 py-2.5 font-heading text-[13px] font-medium text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
@@ -93,16 +103,29 @@ const Header = () => {
                 {item.label}
               </a>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                setCallbackOpen(true);
+              }}
+              className="mt-4 inline-flex items-center justify-center gap-2 rounded-sm border border-border px-5 py-3 font-heading text-sm font-medium text-foreground"
+            >
+              <Icon name="PhoneCall" size={15} className="text-primary" />
+              Обратный звонок
+            </button>
             <a
               href={link('#contact')}
               onClick={() => setOpen(false)}
-              className="mt-4 inline-flex items-center justify-center rounded-sm bg-primary px-5 py-3 font-heading text-sm font-medium text-primary-foreground"
+              className="mt-3 inline-flex items-center justify-center rounded-sm bg-primary px-5 py-3 font-heading text-sm font-medium text-primary-foreground"
             >
               Получить подбор
             </a>
           </nav>
         </div>
       )}
+
+      <CallbackDialog open={callbackOpen} onOpenChange={setCallbackOpen} />
     </header>
   );
 };
